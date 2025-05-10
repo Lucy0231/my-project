@@ -40,7 +40,7 @@ This implementation backtests a Smart Order Router based on Cont & Kukanov's opt
 - ✅ Clear interpretation of parameter-performance relationships
 - ✅ Perfect reproducibility of results
 
-## Enhanced Fill Realism
+## Suggested Improvement: Enhanced Fill Realism
 ### Queue-Aware Execution Model
 ```python
 def execute_order(qty, venue):
