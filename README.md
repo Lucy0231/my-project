@@ -27,11 +27,16 @@ This implementation backtests a Smart Order Router based on Cont & Kukanov's opt
    }
 
 ## Suggested Search Improvements
-1. **Adaptive Parameter Ranges**  
-   ```python
-   # Dynamically narrow ranges after initial search
-   if best_lambda in [min_range, max_range]:
-       new_range = np.linspace(best_lambda*0.5, best_lambda*1.5, 5)
+```python
+def realistic_fill(qty, venue):
+    queue_risk = venue.get('queue_pos', 0.5)  # 0=front, 1=back
+    fill_prob = 0.9 * (1 - queue_risk)       # 90% max fill at front
+    slippage = 0.0005 * (qty/venue['ask_size'])  # 0.05% impact
+    return (
+        min(qty, venue['ask_size']) * fill_prob,
+        venue['ask'] * (1 + slippage)
+    )
+   
 
 # Search choices
 ## Search Methodology
